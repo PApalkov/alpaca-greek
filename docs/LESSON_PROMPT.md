@@ -1,6 +1,6 @@
 # Prompt: write the next lessons of the course
 
-Paste one of these into a new Claude Code session opened in this repository.
+The usual way is the project skill: ask Claude Code «generate epoch N» (`.claude/skills/epoch/SKILL.md`). It runs the whole pipeline: generation, validation, an independent teacher review and the fixes. To write lessons by hand instead, paste one of these into a new Claude Code session opened in this repository.
 
 **Write a whole new epoch** (replace `e2` and `EPOCH_2`):
 
@@ -38,7 +38,7 @@ Alpaca Greek is a course for a Russian speaker who lives in Cyprus (Larnaca) and
 
 1. `src/program/types.ts`: the format (Lesson, LessonType, Step, Exercise).
 2. `src/program/curriculum.ts`: the plan. Every lesson has a `type`, a theme, a grammar point (or what is practised or tested) and a «can do» goal. Follow it, including the type of each lesson. You may refine a lesson's details; if you do, update its curriculum entry to match and mention it in your summary.
-3. `src/program/epoch1.ts` and every other written epoch: the vocabulary and grammar the learner already has, and the characters. For style, lessons 16–19 of epoch 1 are the reference; `docs/reviews/epoch1-review.md` lists what was wrong with the rest and why.
+3. `src/program/epoch1.ts` and every other written epoch: the vocabulary and grammar the learner already has, and the characters. For style, lessons 16–19 of epoch 1 are the reference. Every file in `docs/reviews/` lists what independent reviewers found wrong in earlier epochs and why: do not repeat it.
 4. `src/data/words.json`: the card deck (1286 words; `el` is the exact Greek, `day` is its place in the deck plan; days 193+ are A2 topics).
 5. `src/program/aiPrompts.ts`: what the AI receives for `essay` and `speak` steps, so you know how much the task text must say.
 

@@ -11,7 +11,9 @@ npm run build      # production build in dist/
 npm run preview    # serve dist/ (the service worker works here, not in dev)
 ```
 
-Install on a device: open the deployed URL in Safari, then **Share → Add to Home Screen** on iPhone, or **File → Add to Dock** on Mac.
+Checks: `npm run typecheck`, `npm run validate:program` (course content), `npm run test:answers` (answer checker), `npm run smoke -- e2` (opens every lesson of an epoch in headless Chrome; run `npm run build` first).
+
+**Deploy:** every push to `main` builds and publishes to GitHub Pages (`.github/workflows/deploy.yml`): https://papalkov.github.io/alpaca-greek/. Install on a device: open that URL in Safari, then **Share → Add to Home Screen** on iPhone, or **File → Add to Dock** on Mac. Progress lives in the browser of each device (IndexedDB), so keep the URL stable.
 
 ## Sections
 
@@ -23,8 +25,8 @@ Install on a device: open the deployed URL in Safari, then **Share → Add to Ho
   5. Practice with only those words and that grammar: typed gaps, translation, dictation, sentence building, finding the mistake
   6. Writing about yourself, with a self-ticking checklist and a model text
 
-  Leaving mid-lesson remembers the step. «Изменить» sets the current lesson by hand, for example when the phone and the Mac are at different lessons.
-- **Курс** — 8 epochs × 20 lessons to A2 (`src/program/curriculum.ts`), about 150 hours with warm-ups and AI tasks. Every epoch has four units: three core lessons, a practice lesson (long texts, listening comprehension, transformations, translation), and a task (an essay and a role-play reviewed by AI). The last lesson is a test in the Ελληνομάθεια format. The page shows written lessons, done marks, your texts, and the outline of what is not written yet.
+  Leaving mid-lesson remembers the step. «Шаги» in the lesson header opens any step in any order. «Изменить» sets the current lesson by hand, for example when the phone and the Mac are at different lessons.
+- **Курс** — 8 epochs («разделы» in the UI) × 20 lessons to A2 (`src/program/curriculum.ts`), about 150 hours with warm-ups and AI tasks. Every epoch has four units: three core lessons, a practice lesson (long texts, listening comprehension, transformations, translation), and a task (an essay and a role-play reviewed by AI). The last lesson is a test in the Ελληνομάθεια format. The page shows written lessons, done marks, your texts, and the outline of what is not written yet.
 - **AI review** ([docs/AI_REVIEW.md](docs/AI_REVIEW.md)) — essay and speaking steps, plus «Свой текст на проверку» for any text, build a ready prompt for ChatGPT or Claude (copy it, or open the chat with it). You paste the answer back: the app saves the score, and every mistake becomes a personal «Исправь свою ошибку» exercise in the Leitner box («Мои ошибки», and the warm-up).
 - **Слова** — the full deck, separate from the course: 1286 words in 216 days from `greek_cards.pdf`, each with transcription, past tense and two examples. Learning a day puts its cards into box 1. Reviews follow the same 5-box Leitner intervals as the paper cards (1, 2, 4, 7, 14 days), and a correct answer from box 5 marks the word as learned. Russian→Greek cards ask you to type the word. «День плана» sets which deck day comes next.
 - **Грамматика** — eight topics in three groups:
@@ -37,7 +39,7 @@ Install on a device: open the deployed URL in Safari, then **Share → Add to Ho
 
 ## Writing the next epochs
 
-Epoch 1 has lessons 1–10 written (`src/program/epoch1.ts`); lessons 11–20 and epochs 2–8 are planned. They are written in separate Claude Code sessions with the ready-made prompts in [`docs/LESSON_PROMPT.md`](docs/LESSON_PROMPT.md): one prompt finishes a partly written epoch, the other writes a new one. The prompt covers the lesson types, the task sizes, the exam-format tests, the language rules and the checklist. Then check the result:
+Epochs 1–2 (A1.1, A1.2) are written and reviewed (`src/program/epoch1.ts`, `epoch2.ts`); epochs 3–8 are planned in `curriculum.ts`. Ask Claude Code «generate epoch 3»: the project skill [`.claude/skills/epoch`](.claude/skills/epoch/SKILL.md) runs the whole pipeline. It generates with a background agent following [`docs/LESSON_PROMPT.md`](docs/LESSON_PROMPT.md) (lesson types, task sizes, exam-format tests, language rules, character facts, checklist). Then it validates, runs an independent review by a Greek-teacher agent (`docs/reviews/`) and applies verified fixes. The checks:
 
 ```sh
 npm run validate:program   # types match the plan, deck words exist, exercises are solvable, no Latin letters in Greek
@@ -48,13 +50,13 @@ Lesson, step and exercise positions are progress keys: once an epoch is in use, 
 
 ## Typing Greek
 
-You don't need a Greek keyboard. In answer fields, Latin keys type Greek letters using the standard Greek layout (a→α, h→η, u→θ, c→ψ, v→ω, j→ξ). Press `;` and then a vowel to add stress, or `;` twice for the Greek question mark. Final σ becomes ς automatically. On touch screens an on-screen Greek keypad replaces the system keyboard; the αβγ button toggles it. Practice shortcuts: `1`–`4` choose an option, `Enter` checks and moves on, and `Space` reveals a word card.
+You don't need a Greek keyboard. In answer fields, Latin keys type Greek letters using the standard Greek layout (a→α, h→η, u→θ, c→ψ, v→ω, j→ξ). Press `;` and then a vowel to add stress, or `;` twice for the Greek question mark. Final σ becomes ς automatically. Touch screens use the phone's own keyboard. For a phone without a Greek layout, the αβγ button (or the setting in Статистика) switches to the app's Greek keypad, and the device remembers the choice. Practice shortcuts: `1`–`4` choose an option, `Enter` checks and moves on, and `Space` reveals a word card.
 
 ## Code map
 
 | Path | What |
 | --- | --- |
-| `src/program/` | The course: `types.ts` (format), `curriculum.ts` (road to A2), `epoch1.ts` (lessons), `index.ts` (exercise → item conversion) |
+| `src/program/` | The course: `types.ts` (format), `curriculum.ts` (road to A2), `epochN.ts` (lessons, loaded lazily per epoch), `index.ts` (exercise → item conversion) |
 | `src/sections/lesson/` | Lesson player, step screens (words, text, grammar, practice, write, essay, speak), course progress |
 | `src/program/aiPrompts.ts` | Review prompts for essays, role-plays and free texts |
 | `src/lib/mistakes.ts` | Reads the AI reply, the personal error bank |
@@ -70,7 +72,12 @@ You don't need a Greek keyboard. In answer fields, Latin keys type Greek letters
 | `src/lib/greek.ts` | Answer checking (strict about stress, reports accent-only mistakes) |
 | `src/lib/leitner.ts` | Box intervals and scheduling |
 | `src/storage/` | `ProgressStore` interface + IndexedDB (Dexie) implementation |
-| `src/components/Alpaca.tsx` | The mascot (moods: calm, happy, sad, think) |
+| `src/components/Alpaca.tsx` | The mascot (laurel, sunglasses, meander bandana; moods: calm, happy, sad, think) and the round brand badge |
+| `src/components/Scene.tsx` | 12 lesson covers (Larnaca and Cyprus places), chosen per lesson by `scene` |
+| `src/components/StepMenu.tsx` | «Шаги»: the lesson contents in the focus header |
+| `src/lib/settings.ts` | Practice settings (in progress) and device settings (keypad, side menu; in localStorage) |
+| `.claude/skills/epoch/` | The epoch pipeline skill for Claude Code |
+| `docs/reviews/` | Independent reviews of each epoch, with what was applied |
 
 To add a grammar topic, add nouns or sentences and a `Topic` entry in `questions.ts`. Question ids are stored in progress, so append new sentences at the end instead of inserting them in the middle.
 
@@ -87,10 +94,4 @@ All progress goes through `ProgressStore` (`src/storage/progressStore.ts`). Toda
 
 ## Icons
 
-`scripts/icon.svg` is the source. Re-render the PNGs on macOS:
-
-```sh
-qlmanage -t -s 512 -o public scripts/icon.svg && mv public/icon.svg.png public/icon-512.png
-sips -z 192 192 public/icon-512.png --out public/icon-192.png
-sips -z 180 180 public/icon-512.png --out public/apple-touch-icon.png
-```
+The source is `AlpacaBadge` in `src/components/Alpaca.tsx`. After changing it, run `npm run render:icons` (it needs Google Chrome). That rewrites `public/favicon.svg`, `scripts/icon.svg` and the PNG icons, including a maskable one with the badge inside the safe zone. iPhones keep the icon from when the app was added to the home screen.
