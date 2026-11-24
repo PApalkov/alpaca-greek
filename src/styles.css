@@ -2390,3 +2390,80 @@ textarea.paste {
 .warn-text {
   color: var(--warn);
 }
+
+/* ---------- lesson contents («Шаги» in the focus header) ---------- */
+
+.step-menu {
+  position: relative;
+}
+
+.step-menu > .btn {
+  gap: 6px;
+  padding: 0 10px;
+}
+
+.step-menu-count {
+  color: var(--text-3);
+  font-size: 0.8rem;
+}
+
+.step-menu-list {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 6px);
+  z-index: 20;
+  width: min(320px, calc(100vw - 32px));
+  max-height: 70vh;
+  overflow: auto;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  box-shadow: var(--shadow-pop);
+}
+
+.step-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 10px;
+  border: 0;
+  border-radius: var(--r-sm);
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 0.92rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.step-menu-item:hover {
+  background: var(--surface-2);
+}
+
+.step-menu-item.current {
+  background: var(--accent-soft);
+  font-weight: 600;
+}
+
+.step-menu-mark {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  color: var(--text-2);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.step-menu-mark.done {
+  border-color: var(--good-fill);
+  background: var(--good-fill);
+  color: #fff;
+}

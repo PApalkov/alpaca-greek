@@ -4,6 +4,7 @@ import { GreekInput } from "../../components/GreekInput";
 import { Marks, useTypedAnswer } from "../../components/TypedAnswer";
 import { CloseIcon, SpeakerIcon } from "../../components/Icons";
 import { ProgressBar, SpeakButton } from "../../components/ui";
+import { StepMenu } from "../../components/StepMenu";
 import { questionKey, type BuildItem, type ChooseItem, type Item, type ListenItem, type Question, type SpotItem, type TranslateItem } from "../../grammar/questions";
 import { normalizeAnswer, type Verdict } from "../../lib/greek";
 import { useProgress } from "../../lib/progress";
@@ -149,6 +150,7 @@ export function FocusTop({ exitHref, value, max, label, title }: { exitHref: str
         <ProgressBar value={value} max={max} />
       </div>
       <span className="muted small tabular">{label}</span>
+      <StepMenu />
     </header>
   );
 }
