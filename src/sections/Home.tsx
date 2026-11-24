@@ -49,7 +49,7 @@ export function Home() {
       <div className="today">
         <Alpaca size={96} mood="happy" />
         <h1>Все уроки пройдены</h1>
-        <p className="page-subtitle">Новая эпоха появится, когда её сгенерируют. Пока — повторение в разделе «Слова» и «Грамматика»</p>
+        <p className="page-subtitle">Новый раздел появится, когда его сгенерируют. Пока — повторение в разделе «Слова» и «Грамматика»</p>
       </div>
     );
 
@@ -126,7 +126,7 @@ export function Home() {
           </label>
         ) : (
           <span>
-            <span className="muted">Эпоха {epoch.level}, урок</span> <strong className="tabular">{lessonNumber(current.id)}</strong>
+            <span className="muted">Раздел {epoch.level}, урок</span> <strong className="tabular">{lessonNumber(current.id)}</strong>
             <span className="muted"> из {epoch.lessons.length}</span>
           </span>
         )}

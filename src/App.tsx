@@ -1,8 +1,9 @@
 import { Alpaca } from "./components/Alpaca";
-import { BookIcon, CardsIcon, ChartIcon, HomeIcon, PracticeIcon } from "./components/Icons";
+import { BookIcon, CardsIcon, ChartIcon, HomeIcon, PracticeIcon, SidebarIcon } from "./components/Icons";
 import { useEffect, type ReactNode } from "react";
 import type { CourseState } from "./lib/lesson";
 import { useProgress } from "./lib/progress";
+import { useSidebarCollapsed } from "./lib/settings";
 import { loadEpochs } from "./program";
 import { allLoaded, neededEpochs, useContent } from "./program/useContent";
 import { href, useRoute } from "./lib/router";
@@ -58,6 +59,7 @@ const isFocus = (r: string[]) =>
 export function App() {
   const route = useRoute();
   const { ready, meta, items } = useProgress();
+  const [collapsed, setCollapsed] = useSidebarCollapsed();
   // Only the epochs needed now are loaded (current, started, the next one, the one in the URL).
   useContent();
   const needed = ready ? neededEpochs(meta.course as Partial<CourseState> | undefined, items, route) : [];
@@ -85,20 +87,29 @@ export function App() {
   ];
 
   return (
-    <div className="shell">
+    <div className={`shell${collapsed ? " collapsed" : ""}`}>
       <aside className="sidebar">
-        <a href={href()} className="brand">
+        <a href={href()} className="brand" title="Alpaca Greek">
           <span className="brand-mark"><Alpaca size={30} /></span>
-          <span>Alpaca Greek</span>
+          <span className="side-label">Alpaca Greek</span>
         </a>
         <nav className="side-nav">
           {NAV.map((n) => (
-            <a key={n.id} href={href(...(n.id ? [n.id] : []))} className={section === n.id ? "active" : ""}>
+            <a key={n.id} href={href(...(n.id ? [n.id] : []))} className={section === n.id ? "active" : ""} title={collapsed ? n.label : undefined}>
               {n.icon}
-              <span>{n.label}</span>
+              <span className="side-label">{n.label}</span>
             </a>
           ))}
         </nav>
+        <button
+          className="side-collapse"
+          onClick={() => setCollapsed(!collapsed)}
+          aria-label={collapsed ? "Развернуть меню" : "Свернуть меню"}
+          title={collapsed ? "Развернуть меню" : "Свернуть меню"}
+        >
+          <SidebarIcon size={20} />
+          <span className="side-label">Свернуть</span>
+        </button>
       </aside>
 
       <main className="main">

@@ -4,7 +4,7 @@ import { GROUP_TITLE, TOPICS } from "../grammar/questions";
 import { addDays, today } from "../lib/dates";
 import { BOX_INTERVAL_DAYS } from "../lib/leitner";
 import { useProgress } from "../lib/progress";
-import { usePracticeSettings, type RepeatMistakes } from "../lib/settings";
+import { useKeypad, usePracticeSettings, type RepeatMistakes } from "../lib/settings";
 import { href } from "../lib/router";
 import { store } from "../storage";
 import { topicStats } from "./grammar/topicStats";
@@ -28,6 +28,7 @@ const DAYS = 28;
 export function ProgressPage() {
   const { items, activity, meta, setMeta, reload } = useProgress();
   const practice = usePracticeSettings();
+  const [keypad, setKeypad] = useKeypad();
   const counts = wordCounts(items);
   const fileRef = useRef<HTMLInputElement>(null);
   const [msg, setMsg] = useState("");
@@ -93,6 +94,13 @@ export function ProgressPage() {
               ))}
             </div>
           </div>
+          <label className="setting">
+            <span>
+              <strong>Греческая клавиатура приложения</strong>
+              <span className="muted small">Для телефона без греческой раскладки: в ответах вместо системной клавиатуры — своя, с ударением. Настройка этого устройства</span>
+            </span>
+            <input type="checkbox" className="switch" checked={keypad} onChange={(e) => setKeypad(e.target.checked)} />
+          </label>
         </div>
       </section>
 

@@ -2467,3 +2467,51 @@ textarea.paste {
   background: var(--good-fill);
   color: #fff;
 }
+
+/* ---------- collapsible side menu (desktop) ---------- */
+
+.side-collapse {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 38px;
+  margin-top: auto;
+  padding: 0 10px;
+  border: 0;
+  border-radius: var(--r-sm);
+  background: transparent;
+  color: var(--text-3);
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.side-collapse:hover {
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+@media (min-width: 960px) {
+  .shell {
+    transition: grid-template-columns 0.18s ease;
+  }
+  .shell.collapsed {
+    grid-template-columns: 68px 1fr;
+  }
+  .shell.collapsed .sidebar {
+    padding-inline: 10px;
+    align-items: center;
+  }
+  .shell.collapsed .side-label {
+    display: none;
+  }
+  .shell.collapsed .brand {
+    padding: 0;
+  }
+  .shell.collapsed .side-nav a,
+  .shell.collapsed .side-collapse {
+    width: 44px;
+    justify-content: center;
+    padding: 0;
+  }
+}

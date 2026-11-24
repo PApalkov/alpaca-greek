@@ -226,6 +226,7 @@ Rules:
 
 - `title`: a Greek phrase the learner will be able to say (for a test: `Τεστ A1.2`).
 - `titleRu`: its translation.
+- In Russian text the learner sees, an epoch is «раздел» (тест раздела 3, в разделе 6), never «эпоха»; in Greek titles it is «ενότητα».
 - `goal`: begins with «Сможешь: …» and names a concrete situation («заказать два кофе и попросить счёт»), not a grammar label.
 - `scene`: the cover, chosen by where the lesson's story happens; never the same as the previous lesson's. One of:
   - `village` (white houses, blue domes), `harbor` (sea, boats), `temple` (ancient columns), `grove` (olive trees, sunset), `mountain` (Troodos, pines);

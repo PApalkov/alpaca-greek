@@ -41,3 +41,6 @@ export const ArrowIcon = ({ size }: P) => (
 export const CheckIcon = ({ size }: P) => (
   <svg {...base(size)}><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
 );
+export const SidebarIcon = ({ size }: P) => (
+  <svg {...base(size)}><rect x="3.5" y="4.5" width="17" height="15" rx="2.5" /><path d="M9.5 4.5v15" /></svg>
+);

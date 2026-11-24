@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 import { latinToGreek, withTonos } from "../lib/greek";
+import { isTouch, useKeypad } from "../lib/settings";
 
 const ROWS = [
   ["ς", "ε", "ρ", "τ", "υ", "θ", "ι", "ο", "π"],
@@ -9,8 +10,9 @@ const ROWS = [
 
 /**
  * Text field for Greek answers. On a physical keyboard Latin keys type Greek (standard layout,
- * ";" then a vowel for the accent, ";" twice for the Greek question mark). On touch screens an
- * on-screen Greek keyboard replaces the system one, so no Greek keyboard needs to be installed.
+ * ";" then a vowel for the accent, ";" twice for the Greek question mark). On touch screens the
+ * system keyboard is used; «αβγ» switches to the app's Greek keypad for phones without a Greek
+ * layout, and the choice is remembered on the device.
  * `multiline`: a text area for writing tasks (Enter starts a new line, ⌘/Ctrl+Enter submits).
  */
 export function GreekInput({
@@ -38,8 +40,9 @@ export function GreekInput({
     accentRef.current = typeof v === "function" ? v(accentRef.current) : v;
     setDeadAccentState(accentRef.current);
   };
-  const [touch] = useState(() => typeof matchMedia !== "undefined" && matchMedia("(pointer: coarse)").matches);
-  const [pad, setPad] = useState(touch);
+  const [touch] = useState(isTouch);
+  const [keypad, setKeypad, keypadChosen] = useKeypad();
+  const pad = touch && keypad;
 
   useEffect(() => {
     if (autoFocus && !touch) ref.current?.focus();
@@ -152,11 +155,20 @@ export function GreekInput({
             aria-label="Ответ по-гречески"
           />
         )}
-        <button type="button" className="field-toggle" onClick={() => setPad((p) => !p)} aria-pressed={pad}>
-          αβγ
-        </button>
+        {touch && (
+          <button
+            type="button"
+            className="field-toggle"
+            onClick={() => setKeypad(!keypad)}
+            aria-pressed={pad}
+            title={pad ? "Клавиатура телефона" : "Греческая клавиатура приложения"}
+          >
+            αβγ
+          </button>
+        )}
       </div>
-      {!touch && !pad && (
+      {touch && !keypadChosen && !disabled && <p className="hint-line">Нет греческой раскладки в телефоне? Нажми αβγ — откроется клавиатура приложения</p>}
+      {!touch && (
         <p className="hint-line">
           Латинские клавиши печатают греческие буквы · <kbd>;</kbd> и гласная — ударение · <kbd>;</kbd><kbd>;</kbd> — знак вопроса · {multiline ? <><kbd>⌘</kbd><kbd>Enter</kbd> — готово</> : <><kbd>Enter</kbd> — проверить</>}
         </p>
