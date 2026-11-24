@@ -53,14 +53,15 @@ Alpaca Greek is a course for a Russian speaker who lives in Cyprus (Larnaca) and
 
 Characters are persistent. Use these facts and never contradict them; invent a new name (not a new biography for an old name) when a scene needs someone else.
 
-- **Πάβελ** — the learner. 35, from Russia, lives alone in a flat in the centre of Larnaca, works from home at the computer (IT), learns Greek at a language school. One brother (28) and his parents, all in Russia; **no sister**. Mobile 99 45 28 36. Do not give him a wife, children or a job in Cyprus: dialogues ask him about Russia and his life here, not about a family you invented.
-- **Άννα** — Greek from Athens, 32, works in a bank in the centre of Larnaca, lives in Limassol with her son. Big family in Greece (brother in Athens with a daughter, two sisters in Thessaloniki, father a teacher, mother in a bank). Pavel's friend. Greek is her native language: she never *learns* Greek. No husband is ever mentioned; do not invent one.
-- **Νίκος** — Cypriot from Larnaca, 35, works in the καφετέρια «Θάλασσα» in the centre, lives in the centre with Μαρία and their daughter (6). Two brothers in Nicosia, one sister in Larnaca. Mobile 96 73 15 40.
+- **Πάβελ** — the learner. 35, from Russia, lives alone in a flat in the centre of Larnaca, works from home at the computer (IT), learns Greek at a language school. One brother (28) and his parents, all in Russia; **no sister**. Mobile 99 45 28 36. Works 9:00–18:00; coffee at «Θάλασσα» at 8:30 most mornings; Greek lessons Monday and Wednesday 18:30–20:00, conversation club Thursday 19:00 at «Θάλασσα» (run by Ελένη); shops once a week, Friday evening. Bought a new laptop (590 €) in e2-l06. His flat: living room with an old sofa, a big table, two chairs, a small balcony. Do not give him a wife, children or a job in Cyprus: dialogues ask him about Russia and his life here, not about a family you invented.
+- **Άννα** — Greek from Athens, 32, works in a bank in the centre of Larnaca, lives in Limassol with her son. Big family in Greece (brother in Athens with a daughter, two sisters in Thessaloniki, father a teacher, mother in a bank). Pavel's friend. Greek is her native language: she never *learns* Greek. No husband is ever mentioned; do not invent one. Finishes work at 16:30, lunch break 13:00–14:00.
+- **Νίκος** — Cypriot from Larnaca, 35, works in the καφετέρια «Θάλασσα» in the centre, lives in the centre with Μαρία and their daughter (6). Two brothers in Nicosia, one sister in Larnaca. Mobile 96 73 15 40. Wakes at 6, works 7:45–16:00, Sundays off. Μαρία works evenings (17:00–24:00) and sleeps in the morning; their daughter is at school 7:45–14:00.
 - **Μαρία** — Greek from Athens, Nikos's wife, works in a taverna by the sea.
 - **Ελένη** — Greek from Athens, 30, Pavel's Greek teacher (the «Δασκάλα» in class scenes from e1-l07 on). Moves next door to Pavel in e1-l12 and greets him as her student. Teaches in the evening. Two brothers and a sister.
-- **Κάτια** — Russian, Pavel's classmate from e1-l13 (they learn Greek together with Ελένη). Lives with Ελένη, works evenings in a taverna on Φοινικούδες, does not eat fish. Brother (18) and parents in Russia.
+- **Κάτια** — Russian, Pavel's classmate from e1-l13 (they learn Greek together with Ελένη). Lives with Ελένη in a two-bedroom flat next to Pavel (Katya has the small room; rent 600 € a month, split), works Tue/Thu/Fri/Sat 19:00–24:00 in a taverna on Φοινικούδες, sleeps until 10, does not eat fish. Brother (18) and parents in Russia.
 - **Γιώργος** — Cypriot, 34, Nikos's friend, works at Larnaca airport, married, two children. Pavel met him at the «Θάλασσα» in e1-l15.
 - **Αντρέας and Σοφία** — neighbours from Limassol (Αντρέας 28, works in a bank; Σοφία a teacher), son 5, daughter 2; Σοφία's mother is Russian, so she learns Russian.
+- **Κώστας and Ρένα** — new neighbours of Pavel and Sofia from e2-l12: a young couple with two small daughters; Κώστας from Nicosia, tall and dark; Ρένα from Thessaloniki, short and blonde.
 - Roles without a biography: Σερβιτόρος, Πωλήτρια, Ταξιτζής, Γιατρός, and one-off people with a new name.
 
 **Who knows whom.** Everyone above knows Pavel by the end of epoch 1, so nobody introduces themselves to him again, and nobody asks him what they already know (Anna knows where he is from). A scene where Pavel meets someone needs a new person. When a scene adds a lasting fact (a new job, a move, a pet), add it to this list in the same change.
@@ -75,7 +76,7 @@ Set `type` on every lesson as the curriculum says (`core` is the default when om
 
 1. `{ kind: "words" }`: 8–12 new words in `words` (exact `el` from the deck). Words missing from the deck go to `extraWords` with `tr` (Russian-letter transcription with a stress mark, as in the deck) and `ru`. Every new word appears **at least twice** in the lesson: in the text, and in an exercise answer or the write model.
 2. `dialogue` (8–12 lines; in A2 epochs up to 16) or `reading` (6–12 sentences). Use most of the new words and show the grammar point several times. See «Texts» for what makes it real.
-3. `grammar`: one point, explained in short Russian sentences (no final periods in `p` blocks). Give a table, examples taken from the dialogue, and the typical mistake of a Russian speaker. If the practice needs a form the table does not show (a plural ending, a stress shift), add it to the table.
+3. `grammar`: one point, explained in short Russian sentences (no final periods in `p` blocks). Give a table, examples taken from the dialogue, and the typical mistake of a Russian speaker (a real learner error, not a simplified rule). Check every «only this form» or «always» claim against a dictionary: epoch 2 taught «λίγο/πολύ только со средним родом» and «у μπορώ будущее только θα μπορώ», both false. If the practice needs a form the table does not show (a plural ending, a stress shift), add it to the table.
 4. `practice`: 14–18 exercises using only this lesson's words plus earlier vocabulary:
    - 5–7 `gap`: one `___`; the answer is short; `hint` says what to put («хотеть: мы», «3: средний род»), never the answer. Add `— перевод` to the prompt when the meaning is not obvious. Use `options` only when choosing is the point (ο / η / το).
    - 4–5 `translate`: Russian → Greek, up to 8 words in A1 and up to 14 in A2. Follow the `accept` policy below.
@@ -157,14 +158,15 @@ The Russian sentence must have **one** natural Greek rendering, up to the varian
 **The answer checker (`checkAnswer` in `src/lib/greek.ts`) already accepts these on its own; do not list them:**
 
 - the subject pronoun of a 1st/2nd-person verb, at the start, right after the verb or at the end, added or dropped (`Μένω…` = `Εγώ μένω…` = `Μένω εγώ…`; `Πού δουλεύεις;` = `Εσύ πού δουλεύεις;`). This works for verbs in the deck; 3rd-person pronouns (`αυτός`, `αυτή`) are **not** automatic;
-- `μία` / `μια`, `-ουν` / `-ουνε`, the -άω doublets (`μιλάει` / `μιλά`, `μιλάμε` / `μιλούμε`, `μιλάνε` / `μιλούν` / `μιλάν`), `καινούριος` / `καινούργιος`, `επτά` / `εφτά`, `οκτώ` / `οχτώ`, `εννέα` / `εννιά` (also in δεκα-).
+- `μία` / `μια`, `-ουν` / `-ουνε`, the -άω doublets (`μιλάω` / `μιλώ`, `μιλάει` / `μιλά`, `μιλάμε` / `μιλούμε`, `μιλάνε` / `μιλούν` / `μιλάν`), `καινούριος` / `καινούργιος`, `αβγό` / `αυγό`, `επτά` / `εφτά`, `οκτώ` / `οχτώ`, `εννέα` / `εννιά` (also in δεκα- and -κόσια);
+- a final ν kept where it is not needed (`την Δευτέρα`, `στην Λεμεσό`, `δεν βλέπω`): tolerated, because most modern grammars allow it. A ν dropped where it is required (`δε καταλαβαίνω`, `τη Κύπρο`) stays wrong.
 
 Everything else is yours. For every `translate` and typed `gap`, go down this list and add each variant that applies:
 
 1. **Subject pronoun** for the 3rd person: if the Russian has «он / она / они», accept the form with `αυτός / αυτή / αυτοί` (`Είναι από την Κύπρο.` / `Αυτή είναι από την Κύπρο.`).
 2. *(automatic: μία / μια)*
 3. *(automatic: 3rd plural doublets)*
-4. **Final ν**: `answer` always writes `δεν`, `την`, `στην`, `τον`, `στον` (ν kept before vowels and κ, π, τ, μπ, ντ, γκ, τσ, τζ, ξ, ψ; `τον`/`στον` keep it always). Accept `δε` / `τη` / `στη` **only** before the other consonants (`δε βλέπω`, `τη Ρωσία`). Never accept `δε καταλαβαίνω`, `δε τρώω`, `τη Κύπρο`: those are the mistakes the course teaches against.
+4. **Final ν**: `answer` always writes `δεν`, `την`, `στην`, `τον`, `στον` (ν kept before vowels and κ, π, τ, μπ, ντ, γκ, τσ, τζ, ξ, ψ; `τον`/`στον` keep it always). Before the other consonants `answer` writes `τη` / `στη` (`τη Δευτέρα`); the kept ν and `δε` / `δεν` there are handled by the checker. Never accept `δε καταλαβαίνω`, `δε τρώω`, `τη Κύπρο`: those are the mistakes the course teaches against.
 5. **Optional words**: `χρονών` after an age, `παρακαλώ` at the end of an order, `κι` for `και` before a vowel.
 6. **Order**: time words first or last (`Αύριο θέλουμε…` / `Θέλουμε… αύριο`); «а я — в Ларнаке» with `και εγώ` / `κι εγώ` / `αλλά εγώ μένω`.
 7. **Two taught phrasings** of one meaning (`Είναι καλή ταβέρνα;` / `Είναι μια καλή ταβέρνα;`).
@@ -180,11 +182,11 @@ What is **not** accepted: a less-taught synonym (όμορφος for ωραίος
 
 ### `build`
 
-One sentence per build: tiles keep their capitals, so a second sentence gives itself away (`Τα` in `Χαίρω πολύ! Τα λέμε!`). Tiles must assemble in exactly one natural order. Do not use a sentence whose adverb or object can move (`Μιλάμε λίγο ελληνικά` is borderline; `Θέλεις να δουλεύεις εδώ;` is fine). `extra` tiles are wrong *forms* of answer words (ένας for έναν, τη for την), not unrelated words.
+One sentence per build, and no adverbial that can move to the front or the back (`όλη μέρα`, `σε παρακαλώ`, `το βράδυ`, `αύριο`): tiles keep their capitals, so a second sentence gives itself away (`Τα` in `Χαίρω πολύ! Τα λέμε!`). Tiles must assemble in exactly one natural order. Do not use a sentence whose adverb or object can move (`Μιλάμε λίγο ελληνικά` is borderline; `Θέλεις να δουλεύεις εδώ;` is fine). `extra` tiles are wrong *forms* of answer words (ένας for έναν, τη for την), not unrelated words.
 
 ### `spot`
 
-The bracketed part must make the sentence **ungrammatical in every reading**, not just wrong for the Russian line. `Θέλω να [πάει] στη θάλασσα` is a correct sentence («хочу, чтобы он пошёл»): not a spot item. `Θέλω [πάω] στη θάλασσα` (no να) is. The `explain` names the rule in one line.
+The bracketed part must make the sentence **ungrammatical in every reading**, not just wrong for the Russian line. `Θέλω να [πάει] στη θάλασσα` is a correct sentence («хочу, чтобы он пошёл»): not a spot item. `Θέλω [πάω] στη θάλασσα` (no να) is. Watch for readings you did not intend: `Είναι [τρία] και δέκα` is a grammatical price (3,10 €), so a clock item needs `Τι ώρα είναι;` in front. The `explain` names the rule in one line.
 
 ### `listen`
 
@@ -207,6 +209,7 @@ Rules:
 - A word may be a **typed answer** (gap, translate, build, listen) only if it is in `words` or `extraWords` of this or an earlier lesson. Check every answer against the taught set; in epoch 1, `βλέπω`, `περιμένω`, `γυναίκα`, `έρχεσαι`, `μεγάλη` were typed answers before they were taught — do not repeat that.
 - A new word that is used nowhere in its lesson is a bug (epoch 1 had `η πόλη`, `το όνομα`, `κακός`, `κολυμπάω`, `γράφω`). If the lesson cannot use a planned word twice, move it to a later lesson.
 - Prefer deck words with low `day` numbers; an A1 lesson should not introduce a day-145 word (`κολυμπάω`) while day-20 words (το πρωί, το βράδυ, η μέρα) are still untaught but used.
+- A word that appears in three or more texts must be taught somewhere (the validator only checks typed answers). Current debt to place in epoch 3: `το σχολείο`, `η τράπεζα`.
 - Each lesson's `write` model and essay requirements use only taught words, and are true to «The people»: the model is what the learner copies (epoch 1 had `γονείς`, `Μόσχα`, `κουζίνα` in models, and a model that gave Pavel a sister).
 
 ## Language rules
@@ -214,6 +217,7 @@ Rules:
 - Standard Modern Greek (Κοινή), not Cypriot dialect. Monotonic accents; every word of two or more syllables has a stress mark; monosyllables have none except πού, πώς, ή, and the enclitic second accent (η οικογένειά μου, ο γείτονάς μου).
 - Final ν as in the `accept` policy above. Final `ς`. The question mark is `;`.
 - **No Latin letters inside Greek text** (o/ο, a/α, v/ν and x/χ look the same; the validator checks).
+- **Future before epoch 6**: θα + present appears only with a state verb (είμαι, έχω, ξέρω, μένω), a duration (όλη μέρα, μέχρι τις…) or a frequency (κάθε…, από τη Δευτέρα). Never model it for a single completed action (`θα καθαρίζω το Σάββατο`); write `θα είμαι` / `θα έχω` / `θα πάω` / `θα κάνω`, or the present (`Το Σάββατο καθαρίζω`).
 - Grammar appears in the order of the curriculum. Before a form is taught, it may appear in a dialogue only as a fixed phrase, and never as an exercise answer.
 - Every Greek sentence must be natural and correct. Check each one twice: articles agree with gender and case, stress moves where it should (`δάσκαλος → δασκάλου`, `άνθρωποι → ανθρώπους`), verb endings match the person and tense, and the sentence is something a native would say in that situation (`αλλά όχι ακριβό`, not `αλλά δεν θέλω ένα ακριβό`).
 - Russian text is natural Russian. Comprehension questions test understanding of the text, not knowledge of the world.

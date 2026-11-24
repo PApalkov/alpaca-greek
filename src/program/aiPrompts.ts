@@ -15,9 +15,15 @@ const JSON_TAIL = `At the very end, add this block exactly (a program reads it):
 \`\`\`
 Up to 10 most important mistakes in "errors"; leave out purely stylistic ones.`;
 
+/** At A1 the course teaches only θα + present; a reviewer must not mark it as wrong. */
+const tenseNote = (level: string) =>
+  level.startsWith("A1")
+    ? "\nThe course has not taught past tenses or the perfective future yet: θα + present is the only future the learner knows. Do not count it as a mistake; you may show the perfective form as a tip.\n"
+    : "";
+
 export function essayPrompt(p: { level: string; task: string; requirements: string[]; words: [number, number]; text: string; title?: string }) {
   return `You are an experienced teacher of Modern Greek and an Ελληνομάθεια examiner. ${LEARNER} Current level: ${p.level}.
-
+${tenseNote(p.level)}
 Review the learner's writing.
 ${p.title ? `Lesson: ${p.title}\n` : ""}Task (in Russian): ${p.task}
 Requirements:

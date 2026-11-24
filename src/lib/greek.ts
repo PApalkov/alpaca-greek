@@ -20,7 +20,8 @@ export type Verdict = "correct" | "accent" | "wrong";
  * Strict: stress is part of the answer. "accent" means only the stress marks differ.
  * Variants every answer gets for free (so lesson authors do not have to list them):
  * an optional subject pronoun for 1st/2nd person verbs (Εγώ δεν καταλαβαίνω, Πού δουλεύεις εσύ;)
- * and standard doublets (μία/μια, μιλά/μιλάει, μιλούμε/μιλάμε, -ουνε/-ουν, καινούργιος, εφτά, οχτώ, εννιά).
+ * standard doublets (μία/μια, μιλώ/μιλάω, μιλά/μιλάει, μιλούμε/μιλάμε, -ουνε/-ουν, καινούργιος, αβγό/αυγό,
+ * εφτά, οχτώ, εννιά, εφτακόσια…) and a kept final ν where it is not needed (την Δευτέρα).
  */
 export function checkAnswer(input: string, answers: string[]): Verdict {
   const got = normalizeAnswer(input);
@@ -108,7 +109,14 @@ function withPronounVariants(answer: string): string[] {
 
 const DOUBLETS: [RegExp, string][] = [
   [/(^| )μια(?= |$)/g, "$1μία"],
+  // Keeping ν before a consonant that does not need it (την Δευτέρα, δεν θέλω) is tolerated; dropping
+  // a ν that is required (δε καταλαβαίνω, τη Κύπρο) is not touched here and stays wrong.
+  [/(^| )(σ?τη|δε)ν (?=[βδζθλρσφχ]|γ(?!κ)|μ(?!π)|ν(?!τ))/g, "$1$2 "],
   [/καινούργι/g, "καινούρι"],
+  [/αβγ/g, "αυγ"],
+  [/εφτακόσι/g, "επτακόσι"],
+  [/οχτακόσι/g, "οκτακόσι"],
+  [/εννιακόσι/g, "εννεακόσι"],
   [/(^| )(δεκα)?εφτά(?= |$)/g, "$1$2επτά"],
   [/(^| )(δεκα)?οχτώ(?= |$)/g, "$1$2οκτώ"],
   [/(^| )(δεκα)?εννιά(?= |$)/g, "$1$2εννέα"],
@@ -133,6 +141,7 @@ function canonB(token: string, plain: boolean): string {
     if (!token.startsWith(stem)) continue;
     const end = token.slice(stem.length);
     const a = (x: string) => (plain ? stripMarks(x) : x);
+    if (end === a("ώ")) return stem + a("άω");
     if (end === a("ά")) return stem + a("άει");
     if (end === a("ούμε")) return stem + a("άμε");
     if ([a("ούν"), a("ούνε"), a("άν")].includes(end)) return stem + a("άνε");
