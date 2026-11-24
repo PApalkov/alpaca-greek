@@ -18,7 +18,8 @@ const warnings = [];
 const err = (where, msg) => errors.push(`${where}: ${msg}`);
 const warn = (where, msg) => warnings.push(`${where}: ${msg}`);
 
-const SCENES = ["village", "harbor", "temple", "grove"];
+// Keep in sync with SCENES in src/components/Scene.tsx.
+const SCENES = ["village", "harbor", "temple", "grove", "promenade", "market", "beach", "lake", "church", "night", "home", "mountain"];
 const LATIN = /[A-Za-z]/;
 const GREEK = /[Ͱ-Ͽἀ-῿]/;
 const plain = (s) => s.normalize("NFD").replace(/\p{M}/gu, "").toLocaleLowerCase("el");

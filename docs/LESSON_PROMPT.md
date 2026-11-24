@@ -223,7 +223,10 @@ Rules:
 - `title`: a Greek phrase the learner will be able to say (for a test: `Τεστ A1.2`).
 - `titleRu`: its translation.
 - `goal`: begins with «Сможешь: …» and names a concrete situation («заказать два кофе и попросить счёт»), not a grammar label.
-- `scene`: one of `village` (white houses, blue domes), `harbor` (sea, boats), `temple` (columns on a hill), `grove` (olive trees, sunset). Vary them.
+- `scene`: the cover, chosen by where the lesson's story happens; never the same as the previous lesson's. One of:
+  - `village` (white houses, blue domes), `harbor` (sea, boats), `temple` (ancient columns), `grove` (olive trees, sunset), `mountain` (Troodos, pines);
+  - `promenade` (Φοινικούδες: palms, café tables), `market` (λαϊκή stalls), `beach` (umbrellas, sand), `lake` (Larnaca salt lake, flamingos, Hala Sultan Tekke);
+  - `church` (Agios Lazaros square), `night` (evening promenade, lamps), `home` (balcony with flowers and a sea view).
 
 ## Do not
 
