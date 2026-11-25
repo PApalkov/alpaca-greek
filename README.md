@@ -50,7 +50,7 @@ Lesson, step and exercise positions are progress keys: once an epoch is in use, 
 
 ## Typing Greek
 
-You don't need a Greek keyboard. In answer fields, Latin keys type Greek letters using the standard Greek layout (a→α, h→η, u→θ, c→ψ, v→ω, j→ξ). Press `;` and then a vowel to add stress, or `;` twice for the Greek question mark. Final σ becomes ς automatically. Touch screens use the phone's own keyboard. For a phone without a Greek layout, the αβγ button (or the setting in Статистика) switches to the app's Greek keypad, and the device remembers the choice. Practice shortcuts: `1`–`4` choose an option, `Enter` checks and moves on, and `Space` reveals a word card.
+You don't need a Greek keyboard. In answer fields, Latin keys type Greek letters using the standard Greek layout (a→α, h→η, u→θ, c→ψ, v→ω, j→ξ). Press `;` and then a vowel to add stress, or `;` twice for the Greek question mark. Final σ becomes ς automatically. Touch screens use the phone's own keyboard. The αβγ button (or the setting in Статистика) adds the app's on-screen Greek keypad on any device, and the device remembers the choice. On a laptop it sits under the field next to physical typing; on a phone it replaces the system keyboard, for phones without a Greek layout. Practice shortcuts: `1`–`4` choose an option, `Enter` checks and moves on, and `Space` reveals a word card.
 
 ## Code map
 

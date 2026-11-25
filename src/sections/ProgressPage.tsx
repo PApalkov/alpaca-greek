@@ -97,7 +97,7 @@ export function ProgressPage() {
           <label className="setting">
             <span>
               <strong>Греческая клавиатура приложения</strong>
-              <span className="muted small">Для телефона без греческой раскладки: в ответах вместо системной клавиатуры — своя, с ударением. Настройка этого устройства</span>
+              <span className="muted small">Экранные греческие клавиши с ударением под полем ответа. На телефоне заменяют системную клавиатуру — удобно, если в нём нет греческой раскладки. Настройка этого устройства</span>
             </span>
             <input type="checkbox" className="switch" checked={keypad} onChange={(e) => setKeypad(e.target.checked)} />
           </label>
